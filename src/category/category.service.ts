@@ -7,7 +7,7 @@ export class CategoryService {
 
     async getallcategory() {
         try{
-            const getallcategory = this.prisma.category.findMany();
+            const getallcategory = await this.prisma.category.findMany();
 
             return(getallcategory);
         }
@@ -18,9 +18,34 @@ export class CategoryService {
 
     async createcategory(data:{name:string}) {
         try{
-            const createcategory = this.prisma.category.create({data:{name:data.name}});
+            const createcategory = await this.prisma.category.create({data:{name:data.name}});
             
             return(createcategory);
+        }
+        catch(err) {
+            throw new BadRequestException(err.message);
+        }
+    }
+
+    async updatecategory(id:string,data:{name:string}) {
+        try{
+            const updatecategory = await this.prisma.category.update({
+                where:{id:Number(id)},
+                data:{name:data.name}
+            });
+
+            return(updatecategory);
+        }
+        catch(err) {
+            throw new BadRequestException(err.message);
+        }
+    }
+
+    async delcategory(id:string) {
+        try{
+            const delcategory = await this.prisma.category.delete({where:{id:Number(id)}});
+
+            return;
         }
         catch(err) {
             throw new BadRequestException(err.message);
