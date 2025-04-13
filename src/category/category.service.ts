@@ -51,4 +51,21 @@ export class CategoryService {
             throw new BadRequestException(err.message);
         }
     }
+
+    async searchcategory(query:{search:string}) {
+        try{
+            const searchcategory = await this.prisma.category.findMany({
+                where:{
+                    name:{
+                        contains:query.search.toLowerCase(),
+                    }
+                }
+            });
+
+            return(searchcategory);
+        }
+        catch(err) {
+            throw new BadRequestException(err.message);
+        }
+    }
 }
