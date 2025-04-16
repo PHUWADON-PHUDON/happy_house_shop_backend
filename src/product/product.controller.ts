@@ -7,6 +7,11 @@ import { FileInterceptor } from '@nestjs/platform-express';
 export class ProductController {
   constructor(private readonly productService: ProductService) {}
 
+  @Get()
+  getallproduct() {
+    return this.productService.getallproduct();
+  }
+
   @Post()
   @UseInterceptors(FileInterceptor('file'))
   createproduct(@Body() data,@UploadedFile() file:Express.Multer.File) {
