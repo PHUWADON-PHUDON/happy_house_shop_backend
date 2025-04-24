@@ -8,7 +8,7 @@ export class CategoryService {
     async getallcategory() {
         try{
             const getallcategory = await this.prisma.category.findMany();
-
+            
             return(getallcategory);
         }
         catch(err) {

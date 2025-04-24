@@ -12,6 +12,16 @@ export class ProductController {
     return this.productService.getallproduct();
   }
 
+  @Get("search")
+  searchproduct(@Query() query) {
+    return this.productService.searchproduct(query);
+  }
+
+  @Get("searchbarcode/:barcode")
+  getproductbybarcode(@Param() barcode) {
+    return this.productService.getproductbybarcode(barcode);
+  }
+
   @Get(":id")
   getproduct(@Param() id) {
     return this.productService.getproduct(id);
@@ -27,5 +37,15 @@ export class ProductController {
   @UseInterceptors(FileInterceptor('file'))
   updateproduct(@Param() id,@Body() data,@UploadedFile() file:Express.Multer.File) {
     return this.productService.updateproduct(id,data,file);
+  }
+
+  @Delete(":id")
+  delproduct(@Param() id) {
+    return this.productService.delproduct(id);
+  }
+
+  @Post("/endofsale")
+  endofsale(@Body() data) {
+    return this.productService.endofsale(data);
   }
 }

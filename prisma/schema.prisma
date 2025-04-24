@@ -25,6 +25,7 @@ model product {
   createat DateTime @default(now())
   updateat DateTime @default(now())
   category category @relation(fields: [categoryid], references: [id])
+  history history[]
 }
 
 model category {
@@ -33,4 +34,14 @@ model category {
   createat DateTime @default(now())
   updateat DateTime @default(now())
   product product[]
+}
+
+model history {
+  id Int @id @default(autoincrement())
+  productid Int
+  totalprice Int
+  quantity Int
+  createat DateTime @default(now())
+  updateat DateTime @default(now())
+  product product @relation(fields: [productid], references: [id])
 }

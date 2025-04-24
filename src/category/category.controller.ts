@@ -25,8 +25,8 @@ export class CategoryController {
     return this.categoryService.delcategory(id);
   }
 
-  @Get("search")
-  searchcategory(@Query() query:any) {
-    return this.categoryService.searchcategory(query);
-  }
+  // @Get("search")
+  // searchcategory(@Query() query:any) {
+  //   return this.categoryService.searchcategory(query);
+  // }
 }
